@@ -1,5 +1,0 @@
-diff a/src/helpers/url.ts b/src/helpers/url.ts	(rejected hunks)
-@@ -39 +39,2 @@ export function buildURL(url: string, params?: any): string {
--      } else if (isObject(val)) { // 数组和对象都和stringify
-+      } else if (isObject(val)) {
-+        // 数组和对象都和stringify
