@@ -14,3 +14,13 @@ export function isDate(val: any): val is Date {
 export function isPlainObject(val: any): val is Object {
   return toString.call(val) === '[object Object]'
 }
+
+// 将两个对象合并
+export function extend<T, U>(to: T, from: U): T & U {
+  for (const key in from) {
+    // enumerable是true，代表对象的实例方法时可遍历的
+    // console.log('key', key, Object.getOwnPropertyDescriptor(from.__proto__, key))
+    ;(to as T & U)[key] = from[key] as any
+  }
+  return to as T & U
+}

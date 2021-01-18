@@ -42,6 +42,8 @@ export function buildURL(url: string, params?: any): string {
       parts.push(`${encode(key)}=${encode(val)}`)
     })
   })
+  // a:1 => a=1
+  // a:[1,2,3] => a[]=1,a[]=2,a[]=3
 
   let serializedParams = parts.join('&')
   if (serializedParams) {
