@@ -46,6 +46,11 @@ export interface AxiosError extends Error {
 }
 
 export interface Axios {
+  interceptors:{
+    request: AxiosInterceptorManager<AxiosRequestConfig>
+    response: AxiosInterceptorManager<AxiosResponse>
+  }
+
   request<T = any>(config: AxiosRequestConfig): AxiosPromise<T>
 
   get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
@@ -65,7 +70,22 @@ export interface Axios {
 
 // 定义混合类型
 export interface AxiosInstance extends Axios {
-  <T=any>(config: AxiosRequestConfig): AxiosPromise<T>
+  <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
 
-  <T=any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
+  <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
+}
+
+export interface AxiosInterceptorManager<T> {
+  use(resolved: ResolvedFn<T>, rejected?: RejectedFn): number
+
+  eject(id: number): void
+}
+
+// 请求和响应的参数类型不同，请求是AxiosRequestConfig，响应是Response
+export interface ResolvedFn<T> {
+  (val: T): T | Promise<T>
+}
+
+export interface RejectedFn {
+  (error: any): any
 }
