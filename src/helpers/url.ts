@@ -45,6 +45,7 @@ export function buildURL(url: string, params?: any): string {
   // a:1 => a=1
   // a:[1,2,3] => a[]=1,a[]=2,a[]=3
 
+  // 将params添加到hash之前
   let serializedParams = parts.join('&')
   if (serializedParams) {
     const markIndex = url.indexOf('#')

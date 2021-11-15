@@ -12,7 +12,7 @@ export default function dispatchRequest(config: AxiosRequestConfig): AxiosPromis
 }
 
 function processConfig(config: AxiosRequestConfig): void {
-  config.url = transformURL(config)
+  config.url = transformURL(config) // 拼接url
   config.headers = transformHeaders(config) // 处理headers要在data前面，避免将data改为plainObject后再处理headers
   config.data = transformRequestData(config)
 }
